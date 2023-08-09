@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  politeness: MyString
+  verbosity: MyString
+  emotionality: MyString
+  humor: MyString
+  positivity: MyString
+  sci_fi: false
+  philosophical: false
+  poetic: false
+
+two:
+  politeness: MyString
+  verbosity: MyString
+  emotionality: MyString
+  humor: MyString
+  positivity: MyString
+  sci_fi: false
+  philosophical: false
+  poetic: false
