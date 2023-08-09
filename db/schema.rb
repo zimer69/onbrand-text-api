@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_09_140736) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_09_150416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,11 +22,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_140736) do
   end
 
   create_table "tones", force: :cascade do |t|
-    t.string "politeness"
-    t.string "verbosity"
-    t.string "emotionality"
-    t.string "humor"
-    t.string "positivity"
+    t.integer "politeness", default: 0, null: false
+    t.integer "verbosity", default: 0, null: false
+    t.integer "emotionality", default: 0, null: false
+    t.integer "humor", default: 0, null: false
+    t.integer "positivity", default: 0, null: false
     t.boolean "sci_fi"
     t.boolean "philosophical"
     t.boolean "poetic"
