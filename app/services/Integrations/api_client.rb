@@ -1,4 +1,3 @@
-# app/models/api_client.rb
 require "net/http"
 module Integrations
   class ApiClient
