@@ -1,5 +1,8 @@
 module Integrations
   class OpenaiTexter
+
+    attr_reader :choices
+
     def self.call(prompt)
       new(prompt).call
     end
@@ -10,15 +13,23 @@ module Integrations
 
     URL = "https://api.openai.com/v1/completions"
 
-    def call
-      json = ApiClient.new(URL, headers, body).post
+    def call(num_choices = 1)
+      json = ApiClient.new(URL, headers, body(num_choices)).post
       Rails.logger.debug "🔥:#{json}"
-      json["choices"].first["text"]
+      parse_response(json)
     rescue NoMethodError
       "I'm sorry, but I cannot give a response based on the information provided."
     end
 
     private
+    
+    def parse_choices(json)
+      json["choices"].map { |choice| choice["text"] }
+    end
+
+    def parse_response(json)
+      @choices = parse_choices(json)
+    end
 
     def headers
       {
@@ -27,12 +38,13 @@ module Integrations
       }
     end
 
-    def body
+    def body(num_choices = 1)
       {
         model: "text-davinci-003",
         prompt: @prompt,
         max_tokens: 100,
-        temperature: 0
+        temperature: 1.6,
+        n: num_choices
       }
     end
   end
