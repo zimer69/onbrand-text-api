@@ -1,6 +1,10 @@
 class Openai::TextsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @texts = brand.texts.order(created_at: :desc)
+  end
+
   def create
     new_text = brand.texts.new
     new_text.content = Openaitexter.call(text.content.to_plain_text)
