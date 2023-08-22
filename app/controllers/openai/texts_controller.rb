@@ -1,5 +1,7 @@
 class Openai::TextsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
+  before_action :brand, only: %i[index create]
+  before_action :text, only: %i[show destroy]
 
   def index
     @texts = brand.texts.order(created_at: :desc)
@@ -10,7 +12,15 @@ class Openai::TextsController < ApplicationController
     new_text.content = Openaitexter.call(text.content.to_plain_text)
     return unless new_text.save
       redirect_to brand, notice: 'AI has responded'
-    end
+  end
+
+  def show
+    render json: text
+  end
+
+  def destroy
+    text.destroy
+    head :no_content
   end
 
   def score
@@ -28,8 +38,8 @@ class Openai::TextsController < ApplicationController
   def increase
   end
 
-   def change
-   end
+  def change
+  end
 
   private
 
