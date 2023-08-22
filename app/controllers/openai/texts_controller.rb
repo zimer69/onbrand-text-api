@@ -9,6 +9,24 @@ class Openai::TextsController < ApplicationController
     end
   end
 
+  def score
+  end
+
+  def improve
+  end
+
+  def finish
+  end
+
+  def reduce
+  end
+
+  def increase
+  end
+
+   def change
+   end
+
   private
 
   def brand
