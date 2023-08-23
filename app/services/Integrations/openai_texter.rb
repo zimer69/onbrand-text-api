@@ -22,7 +22,7 @@ module Integrations
     end
 
     private
-    
+
     def parse_choices(json)
       json["choices"].map { |choice| choice["text"] }
     end
@@ -40,10 +40,10 @@ module Integrations
 
     def body(num_choices = 1)
       {
-        model: "text-davinci-003",
+        model: 'gpt-3.5-turbo',
         prompt: @prompt,
         max_tokens: 100,
-        temperature: 1.6,
+        temperature: 0.2,
         n: num_choices
       }
     end
